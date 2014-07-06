@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-<h1>my jrnl</h1>
+<h1>my jrnl.</h1>
 <table class="table table-bordered table-striped sortable">
     <thead>
         <tr>
