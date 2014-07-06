@@ -1,0 +1,40 @@
+<?php $__env->startSection('header'); ?>
+<link rel="stylesheet" href="<?php echo asset('assets/css/summernote.css'); ?>"/>
+<title>Edit: <?php echo $post->title; ?></title>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<h2>my jrnl</h2>
+<?php echo Form::open(array('route' => 'posts.update')); ?>
+<!-- Title Form Input -->
+<div class="form-group">
+    <?php echo Form::label('title', 'Title:'); ?>
+    <?php echo Form::text('title', $post->title, ['class' => 'form-control']); ?>
+</div>
+<!-- Summernote Form Input -->
+<div class="form-group">
+    <?php echo Form::label('body', 'Content:'); ?>
+    <?php echo Form::textarea('body', null, ['id' => 'summernote']); ?>
+</div>
+<!-- Uploading image message -->
+<div id="spinner"></div>
+<div><p>If you're uploading an image it may take some time to appear, just wait patiently.</p></div>
+<?php echo Form::hidden('_method', 'PUT'); ?>
+<?php echo Form::hidden('post_id', $id); ?>
+
+<?php echo Form::submit('Save Post', array('class' => 'btn btn-primary pull-left', 'id' => 'form-submit')); ?>
+<?php echo Form::close(); ?>
+
+<?php echo link_to('posts', 'Go Back', array('class' => 'btn btn-primary pull-right') ); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+<script src="<?php echo asset('assets/js/summernote.min.js'); ?>"></script>
+<script src="<?php echo asset('assets/js/summercustom.js'); ?>"></script>
+<script>
+    $( document ).ready(function() {
+        $('#summernote').code('<?php echo $post->body; ?>');
+    });
+</script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

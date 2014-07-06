@@ -1,0 +1,17 @@
+<?php $__env->startSection('header'); ?>
+<title><?php echo $post->title; ?></title>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="page-header">
+    <h1><?php echo $post->title; ?> <small><?php echo $post->created_at->toFormattedDateString(); ?></small></h1>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <article> <?php echo $post->body; ?> </article>
+    </div>
+</div>
+<?php echo link_to(URL::previous(), 'Go Back', array('class' => 'btn btn-primary pull-right')); ?>
+<?php echo link_to("posts/$post->id/edit", 'Edit', array('class' => 'btn btn-primary pull-left')); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

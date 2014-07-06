@@ -1,0 +1,33 @@
+<?php $__env->startSection('header'); ?>
+<title>Posts</title>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<h1>All Posts</h1>
+<table class="table table-bordered table-striped sortable">
+    <thead>
+        <tr>
+            <th class="col-md-2" data-defaultsort='disabled'>Created</th>
+            <th>Title</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($posts as $post): ?>
+        <tr>
+            <td class="col-md-2"> <?php echo $post->created_at->diffForHumans(); ?> </td>
+            <td><?php echo link_to("posts/$post->id", $post->title); ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<?php echo link_to('posts/create', 'Create Post', array('class' => 'btn btn-primary')); ?>
+<?php echo $posts->links(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+<!--
+<link rel="stylesheet" href="../css/bootstrap-sortable.css">
+<script src="../js/bootstrap-sortable.js"></script>
+-->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
