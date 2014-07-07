@@ -7,7 +7,7 @@
 		@yield('header')
 	</head>
 	<body>
-		<div class="container col-md-6 col-md-offset-3">
+		<div class="container">
 			@yield('content')
 		</div>
 	</body>

@@ -4,15 +4,29 @@
 
 <?php $__env->startSection('content'); ?>
 
-<h1>All Tasks</h1>
-<ul class="list-group">
-    <?php foreach($tasks as $task): ?>
-    <li class="list-group-item">
-        <?php echo gravatar_tag($task->user->email); ?>
-        <?php echo link_to("tasks/$task->id", $task->title); ?>
-
-    </li>
-    <?php endforeach; ?>
-</ul>
+<div class="pull-left col-md-6">
+    <h3>All Tasks</h3>
+    <ul class="list-group">
+        <?php foreach($tasks as $task): ?>
+        <li class="list-group-item">
+            <a href="/<?php echo $task->user->username; ?>/tasks"><?php echo gravatar_tag($task->user->email); ?></a>
+            <?php echo link_to_task($task); ?>
+            <div class="pull-right">
+                <?php echo Form::model($task, ['method' => 'PATCH', 'route' => ['tasks.update', $task->id]]); ?>
+                <?php echo Form::checkbox('completed'); ?>
+                <?php echo Form::submit('Update', ['class' => 'btn']); ?>
+                <?php echo Form::close(); ?>
+            </div>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+    <?php echo $tasks->links(); ?>
+</div>
+<div class="pull-right col-md-6">
+    <?php if(isset($users)): ?>
+    <h3>Add New Task</h3>
+    <?php echo $__env->make('tasks.partials._form', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php endif; ?>
+</div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

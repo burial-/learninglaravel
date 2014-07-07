@@ -7,7 +7,7 @@
 	<h3>Task: <?php echo $task->title; ?></h3>
 	<article> <?php echo $task->body; ?> </article>
 
-	<p> <?php echo link_to('tasks', 'Go Back'); ?> </p>
+	<p> <?php echo link_to(URL::previous(), 'Go Back'); ?> </p>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

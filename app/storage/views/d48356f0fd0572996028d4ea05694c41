@@ -7,7 +7,7 @@
 		<?php echo $__env->yieldContent('header'); ?>
 	</head>
 	<body>
-		<div class="container col-md-6 col-md-offset-3">
+		<div class="container">
 			<?php echo $__env->yieldContent('content'); ?>
 		</div>
 	</body>

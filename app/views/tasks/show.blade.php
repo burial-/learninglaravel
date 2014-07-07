@@ -9,6 +9,6 @@
 	<h3>Task: {{ $task->title }}</h3>
 	<article> {{ $task->body }} </article>
 
-	<p> {{ link_to('tasks', 'Go Back') }} </p>
+	<p> {{ link_to(URL::previous(), 'Go Back') }} </p>
 
 @stop
